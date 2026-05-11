@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Perpustakaan Pelangi Pustaka</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root { --primary: #1e3a8a; --secondary: #3b82f6; --accent: #f59e0b; --success: #10b981; --danger: #ef4444; --light: #f8fafc; --text: #334155; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { font-family: 'Poppins', sans-serif; background-color: var(--light); color: var(--text); line-height: 1.7; }
+
+
+
+/* Navigation */
+
+nav {
+
+background: white; padding: 10px 30px; display: flex; align-items: center; justify-content: space-between;
+
+box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; border-bottom: 3px solid var(--secondary);
+
+}
+
+.nav-logo-block { display: flex; align-items: center; gap: 12px; }
+
+.main-logo-img { height: 45px; width: auto; }
+
+.logo-title { font-weight: 700; color: var(--primary); font-size: 1.1rem; }
+
+
+
+.nav-menu { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.nav-link {
+
+text-decoration: none; color: var(--text); font-weight: 600; font-size: 0.8rem;
+
+padding: 8px 15px; border-radius: 8px; transition: 0.3s; cursor: pointer;
+
+}
+
+.nav-link.active { background: var(--secondary); color: white; }
+
+.nav-link:hover:not(.active) { background: #f1f5f9; color: var(--secondary); }
+
+.btn-admin { background: #1e293b; color: white; }
+
+.btn-admin:hover { background: #334155 !important; color: white !important; }
+
+
+
+/* Sections Toggle */
+
+.page-section { display: none; padding-bottom: 60px; }
+
+.page-section.active { display: block; animation: fadeIn 0.4s ease; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+
+
+/* HEADER STYLES */
+
+.header-main { color: white; padding: 110px 20px 110px; text-align: center; position: relative; }
+
+.header-main h1 { font-size: 2.5rem; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); font-weight: 700; letter-spacing: 1px; }
+
+.header-main p { font-size: 1.1rem; opacity: 0.9; text-shadow: 1px 1px 5px rgba(0,0,0,0.3); }
+
+
+
+.bg-home { background: linear-gradient(135deg, rgba(30, 58, 138, 0.85) 0%, rgba(59, 130, 246, 0.7) 100%), url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80') center/cover; }
+
+.bg-tatatertib { background: linear-gradient(135deg, rgba(234, 88, 12, 0.85) 0%, rgba(245, 158, 11, 0.75) 100%), url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&q=80') center/cover; }
+
+.bg-keanggotaan { background: linear-gradient(135deg, rgba(4, 120, 87, 0.85) 0%, rgba(16, 185, 129, 0.75) 100%), url('https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?auto=format&fit=crop&q=80') center/cover; }
+
+.bg-logo { background: linear-gradient(135deg, rgba(147, 51, 234, 0.85) 0%, rgba(192, 132, 252, 0.75) 100%), url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80') center/cover; }
+
+.bg-ebook { background: linear-gradient(135deg, rgba(16, 185, 129, 0.85) 0%, rgba(5, 150, 105, 0.75) 100%), url('https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80') center/cover; }
+
+.bg-admin { background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(71, 85, 105, 0.8) 100%), url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&q=80') center/cover; }
+
+
+
+.container { max-width: 1000px; margin: auto; padding: 30px 20px; }
+
+
+
+/* Maskot Intro */
+
+.maskot-intro { display: flex; align-items: center; gap: 25px; background: white; padding: 30px; border-radius: 30px; margin-top: -60px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); flex-wrap: wrap; justify-content: center; position: relative; z-index: 5; border: 1px solid #eef2f6; }
+
+.maskot-img { width: 110px; height: 110px; border-radius: 50%; border: 4px solid white; object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+.maskot-text { flex: 1; min-width: 280px; text-align: center; }
+
+.logo-display { display: block; margin: 0 auto 20px; max-width: 280px; height: auto; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.15)); }
+
+
+
+/* Card Umum */
+
+.card { background: white; padding: 35px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.03); margin-bottom: 25px; border: 1px solid #eef2f6; transition: 0.3s; }
+
+.card h3 { color: var(--primary); margin-bottom: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+
+
+/* Grid Rules & E-book */
+
+.rules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+
+.rule-card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid #eef2f6; border-top: 5px solid var(--secondary); transition: 0.3s; height: 100%; }
+
+.rule-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+
+.rule-card.border-green { border-top-color: var(--success); }
+
+.rule-card.border-orange { border-top-color: var(--accent); }
+
+.rule-card.border-red { border-top-color: var(--danger); }
+
+.rule-card.border-purple { border-top-color: #9333ea; }
+
+.rule-card h4 { display: flex; align-items: center; gap: 10px; color: var(--primary); font-size: 1.1rem; margin-bottom: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
+
+
+/* E-book Cards */
+
+.ebook-card { text-align: center; display: flex; flex-direction: column; justify-content: space-between; }
+
+.ebook-img { width: 100%; height: 200px; background: #f1f5f9; border-radius: 10px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; font-size: 3rem; border: 1px dashed #cbd5e1; }
+
+.ebook-title { font-weight: 700; color: var(--primary); margin-bottom: 10px; display: block; }
+
+.btn-read { background: var(--success); color: white; text-decoration: none; padding: 10px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; transition: 0.3s; display: block; margin-top: 15px; }
+
+.btn-read:hover { background: #059669; transform: scale(1.02); }
+
+
+
+ul { list-style: none; }
+
+li { margin-bottom: 10px; padding-left: 25px; position: relative; font-size: 0.95rem; }
+
+.rule-card li::before { content: "✓"; position: absolute; left: 0; color: var(--secondary); font-weight: bold; font-size: 1.1rem;}
+
+.rule-card.border-green li::before { color: var(--success); }
+
+.rule-card.border-orange li::before { color: var(--accent); }
+
+.rule-card.border-red li::before { content: "⚠️"; font-size: 0.9rem; top: 3px; }
+
+.rule-card.border-purple li::before { content: "✦"; color: #9333ea; }
+
+
+
+.highlight { background: #fffbeb; padding: 2px 5px; border-radius: 4px; color: #b45309; font-weight: 600; }
+
+.doc-section { margin-bottom: 25px; }
+
+.doc-title { font-weight: 700; color: var(--primary); margin-bottom: 8px; display: block; font-size: 1.05rem; }
+
+
+
+/* Tampilan Tabel Data */
+
+table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.9rem; }
+
+th, td { padding: 12px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+
+th { background-color: var(--primary); color: white; }
+
+.badge-sisa {
+
+background: var(--accent);
+
+color: white;
+
+padding: 4px 10px;
+
+border-radius: 12px;
+
+font-size: 0.8rem;
+
+font-weight: bold;
+
+display: inline-block;
+
+white-space: nowrap; /* Mencegah teks turun baris */
+
+width: max-content; /* Memaksa background mengikuti panjang teks */
+
+}
+
+
+
+.badge-terlambat {
+
+background: var(--danger);
+
+color: white;
+
+padding: 4px 10px;
+
+border-radius: 12px;
+
+font-size: 0.8rem;
+
+font-weight: bold;
+
+box-shadow: 0 2px 5px rgba(239, 68, 68, 0.4);
+
+animation: pulse 2s infinite;
+
+display: inline-block;
+
+white-space: nowrap; /* Mencegah teks turun baris */
+
+width: max-content; /* Memaksa background mengikuti panjang teks */
+
+}
+
+/* Mencegah sel tabel terakhir (Status Waktu) terlipat */
+
+th:last-child, td:last-child {
+
+white-space: nowrap;
+
+}
+
+
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+
+
+/* Form Admin */
+
+.form-group { margin-bottom: 15px; }
+
+.form-group label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9rem;}
+
+.form-control { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit; }
+
+.btn-submit { background: var(--success); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 10px; transition: 0.3s; }
+
+.btn-submit:hover { background: #059669; }
+
+
+/* Tombol Aksi Tabel */
+
+.action-buttons { display: flex; gap: 5px; flex-wrap: wrap; }
+
+.btn-delete { background: var(--danger); color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; font-weight: bold; transition: 0.3s; }
+
+.btn-delete:hover { background: #b91c1c; }
+
+.btn-edit { background: var(--secondary); color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; font-weight: bold; transition: 0.3s; }
+
+.btn-edit:hover { background: #2563eb; }
+
+
+
+footer { background: #1e293b; color: white; text-align: center; padding: 50px 20px; margin-top: 40px; }
+
+
+
+@media (max-width: 768px) {
+
+nav { flex-direction: column; padding: 15px; }
+
+.nav-menu { margin-top: 10px; width: 100%; justify-content: center; }
+
+.header-main h1 { font-size: 1.8rem; }
+
+.header-main { padding: 90px 20px 90px; }
+
+.maskot-intro { margin-top: -45px; padding: 20px; }
+
+.action-buttons { justify-content: flex-start; }
+
+}
+
+}
+
+/* Memaksa kolom ke-5 (Status Waktu) agar tidak terdesak */
+
+#tabel-publik th:nth-child(5),
+
+#tabel-publik td:nth-child(5) {
+
+min-width: 140px;
+
+white-space: nowrap;
+
+}
+
+/* Batas Scroll Tabel */
+
+.table-container {
+
+max-height: 400px; /* Anda bisa mengubah angka ini untuk mengatur tinggi maksimal tabel */
+
+overflow-y: auto;
+
+overflow-x: auto;
+
+border: 1px solid #e2e8f0;
+
+border-radius: 8px;
+
+}
+
+
+
+/* Mengunci Judul Tabel di Atas (Sticky Header) */
+
+thead th {
+
+position: sticky;
+
+top: 0;
+
+z-index: 10;
+
+box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+
+<nav>
+
+<div class="nav-logo-block">
+
+<img src="images/logo-pelangi.png" alt="Logo" class="main-logo-img">
+
+<span class="logo-title">Pelangi Pustaka</span>
+
+</div>
+
+<div class="nav-menu">
+
+<a class="nav-link active" onclick="showPage('home', this)">Home</a>
+
+<a class="nav-link" onclick="showPage('tata-tertib', this)">Tata Tertib</a>
+
+<a class="nav-link" onclick="showPage('keanggotaan', this)">Keanggotaan</a>
+
+<a class="nav-link" onclick="showPage('filosofi', this)">Filosofi Logo</a>
+
+<a class="nav-link" onclick="showPage('ebook', this)">Koleksi E-Book</a>
+
+<a class="nav-link btn-admin" onclick="aksesAdmin()" id="nav-admin">Admin</a>
+
+</div>
+
+</nav>
+
+
+
+<div id="home" class="page-section active">
+
+<header class="header-main bg-home">
+
+<h1>Perpustakaan</h1>
+
+<p>SD Kristen 04 Eben Haezer Salatiga</p>
+
+</header>
+
+<div class="container">
+
+<div class="maskot-intro">
+
+<img src="images/ezo.jpg" alt="Ezo" class="maskot-img">
+
+<div class="maskot-text">
+
+<h3>Shalom! Kami Ezo & Hera</h3>
+
+<p>Selamat datang di rumah buku kami yang ceria! Kami siap menemani teman-teman menjelajahi dunia lewat membaca.</p>
+
+</div>
+
+<img src="images/hera.jpg" alt="Hera" class="maskot-img">
+
+</div>
+
+
+
+<div class="card" style="margin-top: 40px; border-top: 5px solid var(--accent);" id="papan-info">
+
+<h3>📢 Papan Informasi Peminjaman</h3>
+
+<p style="font-size: 0.9rem; color: #64748b; margin-bottom: 15px;">Daftar teman-teman yang sedang meminjam buku. Mohon dikembalikan tepat waktu ya! <strong style="color: var(--danger);">Batas pinjam 7 Hari.</strong></p>
+
+<div class="table-container">
+
+<table id="tabel-publik">
+
+<thead>
+
+<tr>
+
+<th>Nama Siswa</th>
+
+<th>Kelas</th>
+
+<th>Judul Buku</th>
+
+<th>Tgl Pinjam</th>
+
+<th>Status Waktu</th>
+
+</tr>
+
+</thead>
+
+<tbody id="tbody-publik">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+
+<div style="margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+
+<div class="card">
+
+<h3>📖 Visi</h3>
+
+<p>Menjadi pusat sumber belajar yang inspiratif untuk membentuk generasi yang cerdas, gemar membaca, dan takut akan Tuhan.</p>
+
+</div>
+
+<div class="card">
+
+<h3>🚀 Misi</h3>
+
+<ul style="padding-left: 20px;">
+
+<li style="list-style-type: disc;">Koleksi bacaan berkualitas & edukatif.</li>
+
+<li style="list-style-type: disc;">Program literasi inovatif & menyenangkan.</li>
+
+<li style="list-style-type: disc;">Ruang kreatif yang nyaman & ramah anak.</li>
+
+<li style="list-style-type: disc;">Pemanfaatan teknologi informasi di sekolah.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div id="tata-tertib" class="page-section">
+
+<header class="header-main bg-tatatertib">
+
+<h1>Tata Tertib Perpustakaan</h1>
+
+<p>SD Kristen 04 Eben Haezer</p>
+
+</header>
+
+<div class="container">
+
+<div class="rules-grid">
+
+<div class="rule-card">
+
+<h4><span class="rule-icon">⏰</span> A. Jam Layanan</h4>
+
+<ul>
+
+<li><strong>Senin – Jumat:</strong> 07.00 – 14.00 WIB.</li>
+
+<li><strong>Waktu Istirahat:</strong> Layanan perpustakaan tetap buka selama jam istirahat siswa.</li>
+
+<li><em>(Perpustakaan tutup pada hari libur nasional dan hari libur sekolah)</em></li>
+
+</ul>
+
+</div>
+
+<div class="rule-card border-green">
+
+<h4><span class="rule-icon">👥</span> B. Ketentuan Pengunjung</h4>
+
+<ul>
+
+<li><strong>Mengisi Daftar Hadir:</strong> Wajib mengisi buku kunjungan saat baru memasuki ruangan.</li>
+
+<li><strong>Sepatu Dilepas:</strong> Sepatu wajib dilepas dan ditaruh di rak luar.</li>
+
+<li><strong>Menjaga Ketenangan:</strong> Dilarang berbicara keras, berlarian, atau bermain di dalam.</li>
+
+<li><strong>Menjaga Kebersihan:</strong> Dilarang membawa makanan dan minuman.</li>
+
+<li><strong>Selesai Membaca:</strong> Buku diletakkan di keranjang khusus untuk dirapikan petugas.</li>
+
+</ul>
+
+</div>
+
+<div class="rule-card border-orange">
+
+<h4><span class="rule-icon">📚</span> C. Peminjaman Buku</h4>
+
+<ul>
+
+<li><strong>Syarat Peminjaman:</strong> Wajib menunjukkan Kartu Anggota sendiri.</li>
+
+<li><strong>Batas Peminjaman:</strong> Maksimal meminjam 2 (dua) eksemplar buku.</li>
+
+<li><strong>Masa Pinjam:</strong> Lama peminjaman buku adalah <span class="highlight">7 hari</span>.</li>
+
+<li><strong>Buku Referensi:</strong> Kamus dan Ensiklopedia hanya boleh dibaca di ruangan.</li>
+
+</ul>
+
+</div>
+
+<div class="rule-card border-red">
+
+<h4><span class="rule-icon">🚨</span> D. Sanksi Pelanggaran</h4>
+
+<ul>
+
+<li><strong>Keterlambatan:</strong> Teguran lisan atau sanksi edukatif.</li>
+
+<li><strong>Buku Rusak:</strong> Wajib memperbaiki buku tersebut sebelum dikembalikan.</li>
+
+<li><strong>Buku Hilang:</strong> Wajib mengganti dengan buku yang sama atau uang seharga buku.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div id="keanggotaan" class="page-section">
+
+<header class="header-main bg-keanggotaan">
+
+<h1>Keanggotaan Perpustakaan</h1>
+
+<p>SD Kristen 04 Eben Haezer</p>
+
+</header>
+
+<div class="container">
+
+<div class="rules-grid">
+
+<div class="rule-card">
+
+<h4><span class="rule-icon">🎯</span> 1 & 2. Pendahuluan</h4>
+
+<p>Sebagai acuan bagi petugas dan warga sekolah dalam pendaftaran keanggotaan. Sasaran: Seluruh siswa, guru, dan staf.</p>
+
+</div>
+
+<div class="rule-card border-green">
+
+<h4><span class="rule-icon">📝</span> 3 & 4. Pendaftaran Anggota</h4>
+
+<ul>
+
+<li>Siswa/Guru/Staf aktif.</li>
+
+<li>Menyerahkan pas foto 2x3 (2 lembar).</li>
+
+<li><span class="highlight">Pendaftaran tidak dipungut biaya (Gratis).</span></li>
+
+</ul>
+
+</div>
+
+<div class="rule-card border-orange">
+
+<h4><span class="rule-icon">⚖️</span> 5 & 6. Hak & Kewajiban</h4>
+
+<ul>
+
+<li>Berhak meminjam buku dan akses komputer.</li>
+
+<li>Wajib membawa kartu setiap transaksi.</li>
+
+<li>Menjaga keawetan kartu.</li>
+
+</ul>
+
+</div>
+
+<div class="rule-card border-red">
+
+<h4><span class="rule-icon">💳</span> 7 & 8. Kartu Hilang & Penonaktifan</h4>
+
+<ul>
+
+<li>Kartu hilang dikenakan biaya cetak Rp5.000,-.</li>
+
+<li>Wajib Bebas Pustaka sebelum lulus atau pindah sekolah.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div id="filosofi" class="page-section">
+
+<header class="header-main bg-logo">
+
+<h1>Filosofi Logo</h1>
+
+<p>Makna di Balik Identitas Pelangi Pustaka</p>
+
+</header>
+
+<div class="container">
+
+<div class="card" style="text-align: center;">
+
+<img src="images/logo-pelangi.png" alt="Logo Pelangi Pustaka" class="logo-display">
+
+<p style="font-size: 1.05rem; font-weight: 600; color: var(--primary); max-width: 800px; margin: 0 auto;">
+
+"Perpustakaan bukanlah sekadar tempat menyimpan buku yang kaku, melainkan sebuah taman bermain imajinasi yang hangat dan ceria."
+
+</p>
+
+</div>
+
+
+
+<div class="rules-grid">
+
+<div class="rule-card border-orange">
+
+<h4><span class="rule-icon">🌈</span> Elemen Utama</h4>
+
+<span class="doc-title">📖 Buku Terbuka (Pustaka)</span>
+
+<p style="margin-bottom: 15px; font-size: 0.9rem; color: var(--text);">Terletak tepat di tengah bawah, buku yang terbuka melambangkan jendela dunia, kesiapan untuk menerima ilmu pengetahuan, dan keterbukaan pikiran. Ini adalah fondasi utama dari sebuah perpustakaan sebagai pusat literasi dan belajar.</p>
+
+
+<span class="doc-title">🌈 Pelangi</span>
+
+<p style="font-size: 0.9rem; color: var(--text);">Menghubungkan langsung dengan nama "Pelangi Pustaka". Pelangi melambangkan keindahan dalam keberagaman ilmu pengetahuan, kreativitas, dan imajinasi anak-anak. Dalam konteks sekolah Kristen, pelangi juga merupakan simbol harapan dan janji penyertaan Tuhan.</p>
+
+</div>
+
+
+
+<div class="rule-card border-purple">
+
+<h4><span class="rule-icon">🐝</span> Karakter Pendukung</h4>
+
+<ul style="margin-bottom: 0;">
+
+<li><strong>🍎 Apel Tersenyum:</strong> Berkaitan dengan pendidikan dan kesehatan. Melambangkan proses belajar yang menyenangkan <em>(joyful learning)</em>.</li>
+
+<li><strong>🐝 Lebah Tersenyum:</strong> Simbol ketekunan. Mengajarkan anak-anak untuk rajin "mengumpulkan sari madu" (membaca buku) yang nantinya menghasilkan sesuatu yang manis bagi masa depan.</li>
+
+<li><strong>⭐ Bintang Tersenyum:</strong> Melambangkan cita-cita tinggi dan keunggulan. Pesan bahwa setiap anak berpotensi bersinar terang.</li>
+
+<li><strong>☁️ Awan:</strong> Mewakili ruang imajinasi yang tak terbatas saat anak-anak berpetualang lewat buku.</li>
+
+</ul>
+
+</div>
+
+
+
+<div class="rule-card border-green">
+
+<h4><span class="rule-icon">🎨</span> Bentuk dan Warna</h4>
+
+<span class="doc-title">⭕ Bentuk Lingkaran</span>
+
+<p style="margin-bottom: 15px; font-size: 0.9rem; color: var(--text);">Melambangkan kesatuan, keutuhan, dan perlindungan. Menunjukkan bahwa "Pelangi Pustaka" adalah lingkungan yang aman, inklusif, dan mewadahi seluruh siswa dalam satu semangat literasi.</p>
+
+
+<span class="doc-title">🟡 Latar Kuning Pastel</span>
+
+<p style="font-size: 0.9rem; color: var(--text);">Memancarkan kehangatan, keceriaan, dan optimisme. Warna lembut ini membuat logo terasa ramah anak <em>(child-friendly)</em>, tidak mengintimidasi, dan mengundang siswa untuk merasa nyaman.</p>
+
+</div>
+
+</div>
+
+
+
+<div class="card" style="margin-top: 25px; border-left: 5px solid var(--secondary);">
+
+<h3><span class="rule-icon">✨</span> Kesimpulan Filosofi</h3>
+
+<p>Dengan ketekunan (lebah) dan semangat belajar (apel), siswa-siswi SD Kristen 04 Eben Haezer diajak untuk membuka wawasan (buku), merajut harapan (pelangi), dan meraih cita-cita tertinggi mereka (bintang) di bawah lindungan kasih Tuhan.</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div id="ebook" class="page-section">
+
+<header class="header-main bg-ebook">
+
+<h1>Koleksi E-Book</h1>
+
+<p>Baca Buku Digital Kapan Saja & Di Mana Saja</p>
+
+</header>
+
+<div class="container">
+
+<div class="rules-grid">
+
+
+<div class="rule-card ebook-card">
+
+<div>
+
+<div class="ebook-img">📖</div>
+
+<span class="ebook-title">Buku Bacaan</span>
+
+<p style="font-size: 0.85rem; color: #64748b;">Kumpulan buku bacaan yang ada di perpustakaan.</p>
+
+</div>
+
+<a href="https://drive.google.com/drive/folders/1IjyqjkygaZnzUk2nYEvPjO8rPgeykiPj?usp=sharing" target="_blank" class="btn-read">Baca Sekarang</a>
+
+</div>
+
+
+
+<div class="rule-card ebook-card">
+
+<div>
+
+<div class="ebook-img">🦊</div>
+
+<span class="ebook-title">Dongeng Nusantara</span>
+
+<p style="font-size: 0.85rem; color: #64748b;">Kumpulan cerita rakyat dari Sabang sampai Merauke.</p>
+
+</div>
+
+<a href="https://drive.google.com/drive/folders/1PlfG4a9cV2Stt4yY5a7n-jquKfsueeQa?usp=sharing" target="_blank" class="btn-read">Baca Sekarang</a>
+
+</div>
+
+
+
+<div class="rule-card ebook-card">
+
+<div>
+
+<div class="ebook-img">🚀</div>
+
+<span class="ebook-title">Mengenal Tata Surya</span>
+
+<p style="font-size: 0.85rem; color: #64748b;">Menjelajahi planet-planet di angkasa luar yang luas.</p>
+
+</div>
+
+<a href="https://drive.google.com/drive/folders/1QPxPskvGFrr-6S5DSfE5VaQIKv_N-RFw?usp=sharing" target="_blank" class="btn-read">Baca Sekarang</a>
+
+</div>
+
+
+
+<div class="rule-card ebook-card">
+
+<div>
+
+<div class="ebook-img">🦖</div>
+
+<span class="ebook-title">Dunia Dinosaurus</span>
+
+<p style="font-size: 0.85rem; color: #64748b;">Mengenal jenis-jenis hewan purba yang pernah ada.</p>
+
+</div>
+
+<a href="https://drive.google.com/drive/folders/1_sXZ6oX-irULB_8jgX802uMKyPyVHcqv?usp=sharing" target="_blank" class="btn-read">Baca Sekarang</a>
+
+</div>
+
+
+
+<div class="rule-card ebook-card">
+
+<div>
+
+<div class="ebook-img">🌿</div>
+
+<span class="ebook-title">Aku Cinta Lingkungan</span>
+
+<p style="font-size: 0.85rem; color: #64748b;">Cara sederhana menjaga bumi agar tetap hijau.</p>
+
+</div>
+
+<a href="https://drive.google.com/drive/folders/1DcR8oM1dx4QuQAwBUZVuHbPW00-Hyu68?usp=sharing" target="_blank" class="btn-read">Baca Sekarang</a>
+
+</div>
+
+
+
+<div class="rule-card ebook-card">
+
+<div>
+
+<div class="ebook-img">🦁</div>
+
+<span class="ebook-title">Hewan</span>
+
+<p style="font-size: 0.85rem; color: #64748b;">Mengenal habitat dan makanan hewan di seluruh dunia.</p>
+
+</div>
+
+<a href="#" target="_blank" class="btn-read">Baca Sekarang</a>
+
+</div>
+
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div id="admin" class="page-section">
+
+<header class="header-main bg-admin">
+
+<h1>Panel Admin Perpustakaan</h1>
+
+<p>Kelola Data Peminjaman Siswa</p>
+
+</header>
+
+<div class="container">
+
+<div class="card" style="border-top: 5px solid #1e293b;">
+
+<h3>➕ Tambah Data Peminjam</h3>
+
+<form id="form-admin" onsubmit="tambahData(event)">
+
+<div class="form-group">
+
+<label>Nama Siswa</label>
+
+<input type="text" id="inputNama" class="form-control" required placeholder="Contoh: Budi Santoso">
+
+</div>
+
+<div class="form-group">
+
+<label>Kelas</label>
+
+<input type="text" id="inputKelas" class="form-control" required placeholder="Contoh: 4A">
+
+</div>
+
+<div class="form-group">
+
+<label>Judul Buku</label>
+
+<input type="text" id="inputBuku" class="form-control" required placeholder="Contoh: Cerita Rakyat Nusantara">
+
+</div>
+
+<div class="form-group">
+
+<label>Tanggal Pinjam</label>
+
+<p style="font-size:0.8rem; color:#64748b; margin-top:-5px; margin-bottom:5px;">Otomatis hari ini. Bisa dimundurkan jika admin lupa mengisi kemarin.</p>
+
+<input type="date" id="inputTanggal" class="form-control" required>
+
+</div>
+
+<button type="submit" class="btn-submit">Simpan Data Pinjam</button>
+
+</form>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>📂 Daftar Semua Peminjaman</h3>
+
+<p style="font-size: 0.85rem; color: #ef4444;">*Data <strong>TIDAK AKAN</strong> terhapus otomatis. Anda harus mengklik tombol "Dikembalikan" secara manual jika buku sudah diserahkan siswa.</p>
+
+<div style="overflow-x: auto; margin-top: 15px;">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Nama Siswa</th>
+
+<th>Kelas</th>
+
+<th>Buku</th>
+
+<th>Tgl Pinjam</th>
+
+<th>Aksi Petugas</th>
+
+</tr>
+
+</thead>
+
+<tbody id="tbody-admin">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<footer>
+
+<img src="images/logo-pelangi.png" alt="Logo" style="height:45px; margin-bottom:15px;">
+
+<p><strong>Pelangi Pustaka</strong> - SD Kristen 04 Eben Haezer</p>
+
+<p style="font-size:0.8rem; opacity:0.6; margin-top:10px;">&copy; 2026 Mendukung Literasi Sekolah Bersama Ezo & Hera</p>
+
+</footer>
+
+
+
+<script>
+
+// FUNGSI NAVIGASI
+
+function showPage(pageId, element) {
+
+document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+
+document.getElementById(pageId).classList.add('active');
+
+document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+
+if(element) element.classList.add('active');
+
+window.scrollTo(0,0);
+
+}
+
+
+
+// FUNGSI LOGIN ADMIN
+
+function aksesAdmin() {
+
+// Tulisan petunjuk sudah dihapus agar aman
+
+let password = prompt("Masukkan Password Admin:");
+
+
+// Ganti tulisan "admin123" di bawah ini jika Anda ingin mengganti passwordnya
+
+if (password === "pelangi2026") {
+
+showPage('admin', document.getElementById('nav-admin'));
+
+} else if (password !== null) {
+
+alert("Password Salah! Akses Ditolak.");
+
+}
+
+}
+
+
+
+// SET DEFAULT TANGGAL HARI INI SAAT WEB DIBUKA
+
+document.addEventListener("DOMContentLoaded", function() {
+
+let today = new Date();
+
+let yyyy = today.getFullYear();
+
+let mm = String(today.getMonth() + 1).padStart(2, '0');
+
+let dd = String(today.getDate()).padStart(2, '0');
+
+let tglForm = document.getElementById('inputTanggal');
+
+if(tglForm) tglForm.value = `${yyyy}-${mm}-${dd}`;
+
+});
+
+</script>
+
+
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+
+import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+
+
+const firebaseConfig = {
+
+    apiKey: "AIzaSyAsPDT2IcvSJa7A7eDInZlOKvEuM99IG08",
+  authDomain: "perpus-sdk04-4deb3.firebaseapp.com",
+  projectId: "perpus-sdk04-4deb3",
+  storageBucket: "perpus-sdk04-4deb3.firebasestorage.app",
+  messagingSenderId: "83146941169",
+  appId: "1:83146941169:web:6192a15868ec0d0d86bf50",
+  measurementId: "G-HBE39P3REM"
+
+};
+
+
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+const MAX_HARI = 7;
+
+
+
+window.tambahData = async function(event) {
+
+event.preventDefault();
+
+const nama = document.getElementById('inputNama').value;
+
+const kelas = document.getElementById('inputKelas').value;
+
+const buku = document.getElementById('inputBuku').value;
+
+const tglInput = document.getElementById('inputTanggal').value;
+
+
+try {
+
+await addDoc(collection(db, "peminjaman"), {
+
+nama: nama,
+
+kelas: kelas,
+
+buku: buku,
+
+tglPinjam: new Date(tglInput).toISOString()
+
+});
+
+alert("Data Berhasil Disimpan!");
+
+document.getElementById('form-admin').reset();
+
+} catch (error) {
+
+console.error("Gagal simpan:", error);
+
+alert("Gagal menyimpan data. Cek koneksi atau Firebase Rules!");
+
+}
+
+};
+
+
+// Pastikan listener onSnapshot juga ditutup dengan benar di sini...
+
+</script>
+
+</body>
+
+</html>
