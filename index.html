@@ -1135,7 +1135,65 @@ alert("Gagal menyimpan data. Cek koneksi atau Firebase Rules!");
 
 
 // Pastikan listener onSnapshot juga ditutup dengan benar di sini...
+// FUNGSI UNTUK MENAMPILKAN DATA SECARA REAL-TIME
+onSnapshot(collection(db, "peminjaman"), (snapshot) => {
+        const tbodyPublik = document.getElementById('tbody-publik');
+        const tbodyAdmin = document.getElementById('tbody-admin');
+        
+        // Bersihkan tabel dulu sebelum diisi ulang
+        tbodyPublik.innerHTML = "";
+        tbodyAdmin.innerHTML = "";
 
+        snapshot.forEach((docData) => {
+            const data = docData.data();
+            const id = docData.id;
+            const tglPinjam = new Date(data.tglPinjam);
+            
+            // Hitung Selisih Hari
+            const hariIni = new Date();
+            const selisihWaktu = hariIni - tglPinjam;
+            const selisihHari = Math.floor(selisihWaktu / (1000 * 60 * 60 * 24));
+            const sisaHari = MAX_HARI - selisihHari;
+
+            // Buat Status Badge
+            let statusBadge = "";
+            if (sisaHari < 0) {
+                statusBadge = `<span class="badge-terlambat">Terlambat ${Math.abs(sisaHari)} Hari</span>`;
+            } else {
+                statusBadge = `<span class="badge-sisa">${sisaHari} Hari Lagi</span>`;
+            }
+
+            // Isi Tabel Publik (Halaman Depan)
+            tbodyPublik.innerHTML += `
+                <tr>
+                    <td>${data.nama}</td>
+                    <td>${data.kelas}</td>
+                    <td>${data.buku}</td>
+                    <td>${tglPinjam.toLocaleDateString('id-ID')}</td>
+                    <td>${statusBadge}</td>
+                </tr>`;
+
+            // Isi Tabel Admin (Halaman Admin)
+            tbodyAdmin.innerHTML += `
+                <tr>
+                    <td>${data.nama}</td>
+                    <td>${data.kelas}</td>
+                    <td>${data.buku}</td>
+                    <td>${tglPinjam.toLocaleDateString('id-ID')}</td>
+                    <td class="action-buttons">
+                        <button class="btn-delete" onclick="hapusData('${id}')">Dikembalikan</button>
+                    </td>
+                </tr>`;
+        });
+    });
+
+    // FUNGSI HAPUS DATA (DIKLIK OLEH ADMIN)
+    window.hapusData = async function(id) {
+        if(confirm("Apakah buku sudah benar-benar dikembalikan?")) {
+            await deleteDoc(doc(db, "peminjaman", id));
+            alert("Buku telah dikembalikan!");
+        }
+    }
 </script>
 
 </body>
